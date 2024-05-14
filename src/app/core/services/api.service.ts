@@ -15,25 +15,25 @@ export class ApiService {
   //EMPLEADOS
   getEmployees(): Observable<EmployeeResult> {
     return this.httpClient.get<EmployeeResult>(
-      'http://localhost:8000/api/employees/'
+      'https://laravel-backend-crud-production.up.railway.app/api/employees/'
     );
   }
 
   getEmployee(id: number): Observable<EmployeeResult> {
     return this.httpClient.get<EmployeeResult>(
-      `http://localhost:8000/api/employees/${id}`
+      `https://laravel-backend-crud-production.up.railway.app/api/employees/${id}`
     );
   }
 
   deleteEmployee(id: number): Observable<EmployeeResult> {
     return this.httpClient.delete<EmployeeResult>(
-      `http://localhost:8000/api/employees/${id}`
+      `https://laravel-backend-crud-production.up.railway.app/api/employees/${id}`
     );
   }
 
   addEmployee(employee: any): Observable<EmployeeRequest> {
     return this.httpClient.post<EmployeeRequest>(
-      'http://localhost:8000/api/employees/',
+      'https://laravel-backend-crud-production.up.railway.app/api/employees/',
       employee
     );
   }
@@ -41,7 +41,7 @@ export class ApiService {
   //VERIFICAR CORREO DUPLICADO
   checkEmailDuplicate(email: string): Observable<EmailResponse> {
     return this.httpClient.post<EmailResponse>(
-      'http://localhost:8000/api/verify-email/',
+      'https://laravel-backend-crud-production.up.railway.app/api/verify-email/',
       { correo_electronico: email }
     );
   }
@@ -49,21 +49,21 @@ export class ApiService {
   //PAIS
   getCountries(): Observable<CountryResult[]> {
     return this.httpClient.get<CountryResult[]>(
-      'http://localhost:8000/api/countries/'
+      'https://laravel-backend-crud-production.up.railway.app/api/countries/'
     );
   }
 
   //AREAS
   getAreas(): Observable<AreaResult[]> {
     return this.httpClient.get<AreaResult[]>(
-      'http://localhost:8000/api/areas/'
+      'https://laravel-backend-crud-production.up.railway.app/api/areas/'
     );
   }
 
   //TIPO DE IDENTIFICACIONES
   getIdentifications(): Observable<TypeIdentificationResult[]> {
     return this.httpClient.get<TypeIdentificationResult[]>(
-      'http://localhost:8000/api/identifications/'
+      'https://laravel-backend-crud-production.up.railway.app/api/identifications/'
     );
   }
 }
