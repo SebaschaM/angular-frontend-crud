@@ -1,0 +1,105 @@
+<main
+  id="content"
+  class="mt-[2.5rem] transition-transform duration-300 h-full px-[4rem]"
+>
+  <h1 class="mb-4 text-2xl font-semibold text-gray-800 bg-white">
+    Módulo empleados
+  </h1>
+
+  <button
+    (click)="abrirModalAgregar()"
+    class="px-4 py-2 mb-6 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
+  >
+    Agregar empleado
+  </button>
+
+  <div class="overflow-x-auto overflow-y-auto bg-white rounded-lg shadow">
+    <table class="min-w-full divide-y divide-gray-200">
+      <!-- Encabezados de la tabla -->
+      <thead class="bg-gray-50">
+        <tr>
+          <th
+            *ngFor="let header of headers"
+            class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+          >
+            {{ header }}
+          </th>
+          <th
+            class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+          >
+            Acciones
+          </th>
+        </tr>
+      </thead>
+      <!-- Cuerpo de la tabla -->
+      <tbody class="bg-white divide-y divide-gray-200">
+        <tr *ngFor="let employee of employees">
+          <!-- Celdas con datos del empleado -->
+          <td class="px-6 py-4 whitespace-nowrap">{{ employee.id }}</td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            {{ employee.primer_nombre }}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            {{ employee.otros_nombres }}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            {{ employee.primer_apellido }}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            {{ employee.segundo_apellido }}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            {{
+              capitalizeFirstLetter(employee.identification.tipo_identificacion)
+            }}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            {{ employee.numero_identificacion }}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            {{ capitalizeFirstLetter(employee.country.pais_empleo) }}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            {{ employee.correo_electronico }}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            {{ capitalizeFirstLetter(employee.estado) }}
+          </td>
+          <!-- Botones de acciones -->
+          <td class="px-6 py-4 whitespace-nowrap">
+            <button
+              (click)="abrirModalEditar(employee.id)"
+              class="px-2 py-1 mr-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
+            >
+              Editar
+            </button>
+            <button
+              (click)="abrirModalEliminar(employee.id)"
+              class="px-2 py-1 text-white bg-red-500 rounded-lg hover:bg-red-600"
+            >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<div *ngIf="modalestadoeditar">
+  <app-modaledit
+    (modalCerrado)="cerrarModalEditar($event)"
+    [idEmployee]="idEmployee"
+  ></app-modaledit>
+</div>
+
+<div *ngIf="modalestadoagregar">
+  <app-modaladd (modalCerrado)="cerrarModalAgregar($event)"></app-modaladd>
+</div>
+
+<div *ngIf="modalestadoeliminar">
+  <app-modaldelete
+    [idEmployee]="idEmployee"
+    (modalCerrado)="cerrarModalEliminar($event)"
+  ></app-modaldelete>
+</div>

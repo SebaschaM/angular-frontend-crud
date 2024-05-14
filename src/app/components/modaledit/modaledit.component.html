@@ -1,0 +1,313 @@
+<div
+  class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
+>
+  <div class="fixed inset-0 bg-black opacity-50"></div>
+
+  <div class="relative max-w-5xl mx-auto my-6">
+    <div class="p-6 bg-white rounded-lg shadow-xl modal-body">
+      <button
+        title="Cerrar"
+        (click)="cerrarModalEditar()"
+        class="absolute top-0 right-0 m-4 text-gray-600 hover:text-gray-800 focus:outline-none"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          ></path>
+        </svg>
+      </button>
+
+      <h1 class="mb-6 text-3xl font-semibold text-gray-800">
+        Actualizar Datos
+      </h1>
+
+      <!-- Formulario de Actualizar Empleado -->
+      <form (ngSubmit)="actualizarEmpleado()" [formGroup]="formularioEmpleado">
+        <div class="grid grid-cols-2 gap-6 mb-6">
+          <div>
+            <label
+              for="primerApellido"
+              class="block mb-2 text-sm font-medium text-gray-800"
+              >Primer Apellido:</label
+            >
+            <input
+              type="text"
+              id="primerApellido"
+              formControlName="primerApellido"
+              class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              placeholder="Ingrese el primer apellido"
+              
+            />
+            <div
+              *ngIf="
+                formularioEmpleado.get('primerApellido')?.invalid &&
+                formularioEmpleado.get('primerApellido')?.touched
+              "
+              class="mt-1 text-xs text-red-500"
+            >
+              El primer apellido es requerido.
+            </div>
+          </div>
+          <div>
+            <label
+              for="segundoApellido"
+              class="block mb-2 text-sm font-medium text-gray-800"
+              >Segundo Apellido:</label
+            >
+            <input
+              type="text"
+              id="segundoApellido"
+              formControlName="segundoApellido"
+              class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              placeholder="Ingrese el segundo apellido"
+            />
+            <div
+              *ngIf="
+                formularioEmpleado.get('segundoApellido')?.invalid &&
+                formularioEmpleado.get('segundoApellido')?.touched
+              "
+              class="mt-1 text-xs text-red-500"
+            >
+              El segundo apellido es requerido.
+            </div>
+          </div>
+          <div class="mb-6">
+            <label
+              for="primerNombre"
+              class="block mb-2 text-sm font-medium text-gray-800"
+              >Primer Nombre:</label
+            >
+            <input
+              type="text"
+              id="primerNombre"
+              formControlName="primerNombre"
+              class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              placeholder="Ingrese el primer nombre"
+            />
+            <div
+              *ngIf="
+                formularioEmpleado.get('primerNombre')?.invalid &&
+                formularioEmpleado.get('primerNombre')?.touched
+              "
+              class="mt-1 text-xs text-red-500"
+            >
+              El primer nombre es requerido.
+            </div>
+          </div>
+          <div class="mb-6">
+            <label
+              for="otrosNombres"
+              class="block mb-2 text-sm font-medium text-gray-800"
+              >Otros Nombres:</label
+            >
+            <input
+              type="text"
+              id="otrosNombres"
+              formControlName="otrosNombres"
+              class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              placeholder="Ingrese otros nombres"
+            />
+            <div
+              *ngIf="
+                formularioEmpleado.get('otrosNombres')?.invalid &&
+                formularioEmpleado.get('otrosNombres')?.touched
+              "
+              class="mt-1 text-xs text-red-500"
+            >
+              Los otros nombres son requeridos.
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6 mb-6">
+          <div>
+            <label
+              for="countryId"
+              class="block mb-2 text-sm font-medium text-gray-800"
+              >País de Empleo:</label
+            >
+            <select
+              id="countryId"
+              formControlName="countryId"
+              class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              [class.border-red-500]="
+                formularioEmpleado.get('countryId')?.invalid &&
+                formularioEmpleado.get('countryId')?.touched
+              "
+            >
+              <option value="" disabled selected>Selecciona un país</option>
+              <option value="1">Colombia</option>
+              <option value="2">Estados Unidos</option>
+            </select>
+            <div
+              *ngIf="
+                formularioEmpleado.get('countryId')?.invalid &&
+                formularioEmpleado.get('countryId')?.touched
+              "
+              class="mt-1 text-xs text-red-500"
+            >
+              Por favor selecciona un país.
+            </div>
+          </div>
+
+          <div>
+            <label
+              for="identificationId"
+              class="block mb-2 text-sm font-medium text-gray-800"
+              >Tipo de Identificación:</label
+            >
+            <select
+              id="identificationId"
+              formControlName="identificationId"
+              class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              [class.border-red-500]="
+                formularioEmpleado.get('identificationId')?.invalid &&
+                formularioEmpleado.get('identificationId')?.touched
+              "
+            >
+              <option value="" disabled selected>
+                Selecciona un tipo de identificación
+              </option>
+              <option value="1">Cédula de Ciudadanía</option>
+              <option value="2">Cédula de Extranjería</option>
+              <option value="3">Pasaporte</option>
+              <option value="4">Permiso Especial</option>
+            </select>
+            <div
+              *ngIf="
+                formularioEmpleado.get('identificationId')?.invalid &&
+                formularioEmpleado.get('identificationId')?.touched
+              "
+              class="mt-1 text-xs text-red-500"
+            >
+              Por favor selecciona un tipo de identificación.
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-6 mb-6">
+          <div>
+            <label
+              for="numero_identificacion"
+              class="block mb-2 text-sm font-medium text-gray-800"
+              >Número de Identificación:</label
+            >
+            <input
+              type="text"
+              id="numero_identificacion"
+              formControlName="numero_identificacion"
+              class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              placeholder="Ingrese el número de identificación"
+            />
+            <div
+              *ngIf="
+                formularioEmpleado.get('numero_identificacion')?.invalid &&
+                formularioEmpleado.get('numero_identificacion')?.touched
+              "
+              class="mt-1 text-xs text-red-500"
+            >
+              El número de identificación es requerido.
+            </div>
+          </div>
+          <div>
+            <label
+              for="fechaIngreso"
+              class="block mb-2 text-sm font-medium text-gray-800"
+              >Fecha de Ingreso:</label
+            >
+            <input
+              type="date"
+              id="fechaIngreso"
+              formControlName="fechaIngreso"
+              class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              [class.border-red-500]="
+                formularioEmpleado.get('fechaIngreso')?.invalid &&
+                formularioEmpleado.get('fechaIngreso')?.touched
+              "
+            />
+            <div
+              *ngIf="
+                formularioEmpleado.get('fechaIngreso')?.invalid &&
+                formularioEmpleado.get('fechaIngreso')?.touched
+              "
+              class="mt-1 text-xs text-red-500"
+            >
+              Por favor selecciona una fecha de ingreso válida.
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-6 mb-6">
+          <div>
+            <label
+              for="areaId"
+              class="block mb-2 text-sm font-medium text-gray-800"
+              >Área:</label
+            >
+            <select
+              id="areaId"
+              formControlName="areaId"
+              class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+              [class.border-red-500]="
+                formularioEmpleado.get('areaId')?.invalid &&
+                formularioEmpleado.get('areaId')?.touched
+              "
+            >
+              <option value="" disabled selected>Selecciona un área</option>
+              <option value="1">Administración</option>
+              <option value="2">Financiera</option>
+              <option value="3">Compras</option>
+              <option value="4">Infraestructura</option>
+              <option value="5">Operación</option>
+              <option value="6">Talento Humano</option>
+              <option value="7">Servicios Varios</option>
+              <option value="8">Entre otros</option>
+            </select>
+            <div
+              *ngIf="
+                formularioEmpleado.get('areaId')?.invalid &&
+                formularioEmpleado.get('areaId')?.touched
+              "
+              class="mt-1 text-xs text-red-500"
+            >
+              Por favor selecciona un área.
+            </div>
+          </div>
+
+          <div>
+            <label class="block mb-2 text-sm font-medium text-gray-800"
+              >Estado:</label
+            >
+            <div
+              class="w-full px-4 py-2 bg-gray-100 border rounded-md focus:outline-none focus:border-blue-500"
+            >
+              Activo
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-end">
+          <button
+            type="submit"
+            class="px-6 py-3 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+          >
+            Agregar
+          </button>
+          <button
+            type="button"
+            (click)="cerrarModalEditar()"
+            class="px-6 py-3 ml-4 text-sm font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none focus:bg-gray-300"
+          >
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

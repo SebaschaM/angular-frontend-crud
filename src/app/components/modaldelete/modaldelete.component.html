@@ -1,0 +1,22 @@
+<div class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
+  <div class="fixed inset-0 bg-black opacity-50"></div>
+
+  <div class="relative w-auto max-w-md mx-auto my-6">
+    <div class="p-4 bg-white rounded-lg shadow-xl modal-body">
+      <button title="Cerrar" (click)="cerrarModalEliminar()" class="absolute top-0 right-0 m-4 text-gray-600 hover:text-gray-800 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <h1 class="mb-4 text-2xl font-semibold text-gray-800">Confirmar Eliminación</h1>
+
+      <p class="mb-6 text-gray-700">¿Estás seguro de que deseas eliminar este elemento?</p>
+
+      <div class="flex justify-end">
+        <button (click)="eliminarElemento()" class="px-4 py-2 mr-2 text-sm font-medium text-white bg-red-500 rounded-md hover:bg-red-600 focus:outline-none focus:bg-red-600">Eliminar</button>
+        <button (click)="cerrarModalEliminar()" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none focus:bg-gray-300">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
